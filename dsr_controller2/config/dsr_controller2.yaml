@@ -77,8 +77,11 @@
   dsr_moveit_controller:
     ros__parameters:
       command_interfaces:
+        # position-only: commanding velocity too makes the Doosan stutter
+        # (its own interpolation fights the JTC velocity setpoints). Matches the
+        # smooth dsr_moveit_config_m0609 JTC. Native /motion/move_line is
+        # unaffected since it bypasses this controller.
         - position
-        - velocity
       state_interfaces:
         - position
         - velocity
