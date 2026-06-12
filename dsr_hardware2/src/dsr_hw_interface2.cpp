@@ -491,7 +491,14 @@ return_type DRHWInterface::write(const rclcpp::Time &, const rclcpp::Duration &d
         {
             float acc[6] = {0,0,0,0,0,0};
             const float margin = 20.0f;
-            float servo_time = static_cast<float>(real_loop_dt * margin);
+            // servo_time drives the servoj_rt interpolation window. Deriving it
+            // from the *measured* real_loop_dt means a non-RT kernel's per-cycle
+            // scheduling jitter modulated the window directly, wobbling the
+            // harmonic-drive servo profile (visible joint jitter). Use the
+            // nominal control period (1/update_rate) instead so the window is
+            // constant; fall back to the measured dt only if update_rate is unset.
+            double servo_period = (desired_period > 0.0) ? desired_period : real_loop_dt;
+            float servo_time = static_cast<float>(servo_period * margin);
 
             Drfl.servoj_rt(pos, vel, acc, servo_time);
             cmd_type = "servoj_rt";

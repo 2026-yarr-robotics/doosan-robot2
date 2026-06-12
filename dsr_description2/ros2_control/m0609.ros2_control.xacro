@@ -73,8 +73,10 @@
           <param name="max">{2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.2</param>
-          <param name="max">3.2</param>
+          <!-- match URDF/MoveIt hardware limit (3.927 rad/s); the prior 3.2
+               ceiling sat below the planned wrist velocity and clamped it. -->
+          <param name="min">-3.927</param>
+          <param name="max">3.927</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
@@ -88,8 +90,10 @@
           <param name="max">{2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.2</param>
-          <param name="max">3.2</param>
+          <!-- match URDF/MoveIt hardware limit (3.927 rad/s); the prior 3.2
+               ceiling sat below the planned wrist velocity and clamped it. -->
+          <param name="min">-3.927</param>
+          <param name="max">3.927</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
@@ -103,8 +107,10 @@
           <param name="max">{2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.2</param>
-          <param name="max">3.2</param>
+          <!-- match URDF/MoveIt hardware limit (3.927 rad/s); the prior 3.2
+               ceiling sat below the planned wrist velocity and clamped it. -->
+          <param name="min">-3.927</param>
+          <param name="max">3.927</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
